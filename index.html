@@ -148,6 +148,7 @@
           0.5, -1.0, 0.0,
           1.0, -1.0, 0.0
         ]
+        hurufM = matrixScaling(hurufM, 0.3)
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(hurufM), gl.STATIC_DRAW)
         triangleVertexPositionBuffer.itemSize = 3
         triangleVertexPositionBuffer.numItems = 10
@@ -215,12 +216,10 @@
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
         mat4.perspective(pMatrix, glMatrix.toRadian(45), gl.viewportWidth / gl.viewportHeight, 0.1, 100.0)
         mat4.identity(mvMatrix)
-        mat4.translate(mvMatrix, mvMatrix, [0.0, 0.0, -9.0])
+        mat4.translate(mvMatrix, mvMatrix, [0.0, 0.0, -5.0])
 
         mvPushMatrix()
 
-        mat4.scale(mvMatrix, mvMatrix, [0.5, 0.5, 0.5])
-        mat4.rotate(mvMatrix, mvMatrix, glMatrix.toRadian(rTri), [0.0, 1.0, 0.0])
         //mat4.rotateY(mvMatrix, mvMatrix, glMatrix.toRadian(rTri))
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer)
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0)
@@ -230,7 +229,7 @@
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, triangleVertexPositionBuffer.numItems)
         mvPopMatrix()
 
-        mat4.translate(mvMatrix, mvMatrix, [0.0, 0.0, 0.0])
+        mat4.translate(mvMatrix, mvMatrix, [0.0, 0.0, -4.0])
 
         mvPushMatrix()
         mat4.rotate(mvMatrix, mvMatrix, glMatrix.toRadian(rSquare), [0.0, 1.0, 0.0])
