@@ -217,7 +217,8 @@
         mat4.perspective(pMatrix, glMatrix.toRadian(45), gl.viewportWidth / gl.viewportHeight, 0.1, 100.0)
         mat4.identity(mvMatrix)
         mat4.translate(mvMatrix, mvMatrix, [0.0, 0.0, -5.0])
-
+        collisionCheck()
+        movingM()
         mvPushMatrix()
 
         //mat4.rotateY(mvMatrix, mvMatrix, glMatrix.toRadian(rTri))
